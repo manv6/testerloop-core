@@ -8,7 +8,9 @@ This repo will guide you through the installation of Testerloop in your project.
 
 ## Testerloop App
 
-To begin with you can install the App, which is a web application that will allow you to view your test results. Detailed installation instructions can be found in the repo [here](https://github.com/testerloop/testerloop-app/tree/open-source). 
+To begin with you can install the App, which is a web application that will allow you to view your test results. Detailed installation instructions can be found in the repo [here](https://github.com/testerloop/testerloop-app/tree/open-source).
+
+Once installed and running you can create a new user in the Web UI. This user will be used to authenticate the CLI and Cypress Reporter Plugin with your API Key, which will be emailed to you.
 
 _#TODO - this currently points to the `open-source` branch, but will be updated to `main` once the app is open sourced._
 
