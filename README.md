@@ -6,6 +6,12 @@ This repo will guide you through the installation of Testerloop in your project.
 2. Testerloop CLI
 3. Testerloop Cypress Reporter Plugin
 
+## Getting Started
+
+There is a Demo Project where you can test the installation of Testerloop. You can find the Demo Project [here](https://github.com/testerloop/demo-project). This is a very basic set up of several Cucumber `.feature` files for end to end testing.
+
+Clone this project and then follow the instructions below to install Testerloop.
+
 ## Testerloop App
 
 To begin with you can install the App, which is a web application that will allow you to view your test results. Detailed installation instructions can be found in the repo [here](https://github.com/testerloop/testerloop-app/tree/open-source).
