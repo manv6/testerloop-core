@@ -22,9 +22,9 @@ _#TODO - this currently points to the `open-source` branch, but will be updated 
 
 ## Testerloop CLI
 
-The Testerloop CLI is a command line tool that will allow you to run your tests and send the results to the Testerloop App. Detailed installation instructions can be found in the repo [here](https://github.com/testerloop/testerloop-cli/tree/multitenant). 
+The Testerloop CLI is a command line tool that will allow you to run your tests and send the results to the Testerloop App. Detailed installation instructions can be found in the repo [here](https://github.com/testerloop/testerloop-cli/tree/open-source). 
 
-_#TODO - this currently points to the `multitenant` branch, but will be updated to `main` once the app is open sourced._
+_#TODO - this currently points to the `open-source` branch, but will be updated to `main` once the app is open sourced._
 
 ## Testerloop Cypress Reporter Plugin
 
