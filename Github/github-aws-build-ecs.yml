@@ -1,0 +1,38 @@
+name: Cypress AWS ECS - Build ECS Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  example_matrix:
+    name: Build ECS Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Setting up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag, and push image to Amazon ECR
+        id: testerloop-ecs-build
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          IMAGE_TAG: latest
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "Building image from Dockerfile.ecs..."
+          docker build -f Dockerfile.ecs --build-arg NPM_TOKEN=$NPM_TOKEN -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          echo "Pushing image to ECR..."
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "Pushed image to ECR finished!!!"
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

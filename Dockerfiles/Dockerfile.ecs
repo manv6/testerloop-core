@@ -1,0 +1,27 @@
+# The below is an example Dockerfile to build an image for running Cypress tests on AWS ECS
+
+# Add the desired versions for cypress, node and chrome
+ARG CYPRESS_VERSION="12.11.0"
+ARG CHROME_VERSION="112.0.5615.165-1"
+ARG NODE_VERSION="16.18.1"
+
+FROM public.ecr.aws/cypress-io/cypress/factory:2.3.0
+COPY cypress.config.js ./
+COPY .testerlooprc.json ./
+COPY package.json ./
+COPY package-lock.json ./
+COPY .testerlooprc.json ./
+
+# Append the NPM token to your root .npmrc file to download the testerloop packages
+ARG NPM_TOKEN
+COPY .npmrc ./
+RUN echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+RUN npm i 
+RUN npx cypress verify
+COPY cypress ./cypress
+RUN mkdir -p ./cypress/videos
+RUN mkdir -p ./cypress/screenshots
+
+# Add a default cmd command. It will be overwritten on testerloop's execute
+CMD [ "npm", "run", "testerloop:ecs" ]
