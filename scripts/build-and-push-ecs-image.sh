@@ -9,7 +9,6 @@ eval $(egrep -v '^#' .env | xargs)
 # Get the commit SHA
 COMMIT_SHA=$(git rev-parse --short HEAD)
 
-echo "$NPM_TOKEN"
 # Login to Amazon ECR
 echo "Logging in to Amazon ECR..."
 aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_REPOSITORY
