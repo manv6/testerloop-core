@@ -34,5 +34,5 @@ jobs:
           docker build -f Dockerfile.ecs --build-arg NPM_TOKEN=$NPM_TOKEN -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "Pushed image to ECR finished!!!"
+          echo "Image pushed to ECR."
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

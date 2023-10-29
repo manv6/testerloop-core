@@ -12,10 +12,9 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY .testerlooprc.json ./
 
-# Append the NPM token to your root .npmrc file to download the testerloop packages
 ARG NPM_TOKEN
-COPY .npmrc ./
-RUN echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+RUN echo "@testerloop:registry=https://npm.pkg.github.com" > .npmrc && \
+    echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" >> .npmrc
 
 RUN npm i 
 RUN npx cypress verify
