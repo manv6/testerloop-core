@@ -2,7 +2,7 @@
 
 # Add the desired versions for cypress, node and chrome
 ARG CYPRESS_VERSION="12.11.0"
-ARG CHROME_VERSION="112.0.5615.165-1"
+ARG CHROME_VERSION="118.0.5993.70-1"
 ARG NODE_VERSION="16.18.1"
 
 FROM public.ecr.aws/cypress-io/cypress/factory:2.3.0
@@ -22,5 +22,5 @@ COPY cypress ./cypress
 RUN mkdir -p ./cypress/videos
 RUN mkdir -p ./cypress/screenshots
 
-# Add a default cmd command. It will be overwritten on testerloop's execute
+# Add a default cmd command. It will be overwritten on Testerloop's execute
 CMD [ "npm", "run", "testerloop:ecs" ]
